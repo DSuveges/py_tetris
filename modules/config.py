@@ -11,7 +11,7 @@ class Configurations():
     brick_size = 40
 
     # Color mappings:
-    colors = {
+    tetronimo_colors = {
         1: 'white',
         2: 'darkorange',
         3: 'lightgoldenrod1',
@@ -24,8 +24,6 @@ class Configurations():
 
     # Tetromino definitions:
     tetronimos = {
-        # For diagnostic purposes:
-        '.': {'shape': [[1]]},
         'L': {'shape': [[0,0,0],[2,2,2],[2,0,0]]},
         'O': {'shape': [[3,3],[3,3]]},
         'Z': {'shape': [[0,0,0],[4,4,0],[0,4,4]]},
