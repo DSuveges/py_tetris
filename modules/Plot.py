@@ -5,11 +5,12 @@ import colorsys
 
 class MatrixPlot():
 
-    def __init__(self, screen_size, tetromino_colors, brick_size):
+    def __init__(self, screen_size, tetromino_colors, brick_size, matrix_background_color):
         self.tetromino_colors = tetromino_colors
         self.brick_size = brick_size
         self.matrix = pygame.display.set_mode(screen_size)
         self.brick_offset = brick_size / 8
+        self.matrix_background_color = matrix_background_color
 
 
     def draw_rectangle(self, color, x, y):
@@ -37,7 +38,7 @@ class MatrixPlot():
 
     def draw_matrix(self, matrix):
 
-        self.matrix.fill((0, 0, 0))
+        self.matrix.fill(pygame.Color(self.matrix_background_color))
 
         for yi, row in enumerate(matrix):
             for xi, color_code in enumerate(row):

@@ -19,6 +19,7 @@ dimensions = (Configurations.height, Configurations.width)
 tetronimos = Configurations.tetronimos
 random_method = Configurations.random_method
 tetromino_colors = Configurations.tetronimo_colors
+matrix_background_color = Configurations.matrix_background_color
 
 # Initializing 
 bag = Bag(tetronimos)
@@ -31,7 +32,7 @@ time_elapsed_since_last_action = 0
 clock = pygame.time.Clock()
 
 # Initilize matrix view:
-m_plot = MatrixPlot(screen_size, tetromino_colors, brick_size)
+m_plot = MatrixPlot(screen_size, tetromino_colors, brick_size, matrix_background_color)
 
 # Initialize the matrix:
 m = Matrix(dimensions)

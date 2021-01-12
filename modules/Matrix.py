@@ -1,4 +1,5 @@
 import numpy as np
+import colorsys
 
 
 # A class to handle matrix actions 
@@ -68,15 +69,16 @@ class Matrix():
         It is superposed to the matrix, and if no clashing is found, 
         the position/tetromino is updated
         """
-        
         if position is None:
-            position = self.position
+            position = self.position.copy()
             
-        if tetromino is None:
-            tetromino = self.tetromino
+        elif tetromino is None:
+            tetromino = self.tetromino.copy()
+        else:
+            return False
             
         # Loop through all the tetromino cells to see if there's any clash:
-        for yi, row in enumerate(self.tetromino):
+        for yi, row in enumerate(tetromino):
             for xi, value in enumerate(row):
                 if value == 0:
                     continue
@@ -89,13 +91,14 @@ class Matrix():
                     return False
                 
                 # blocked by the wall:
-                if pos_x < 0 or pos_x > self.dimensions[1]:
+                if pos_x < 0 or pos_x >= self.dimensions[1]:
                     return False
                 
                 # blocked by an old tetromino:
                 try:
                     if self.matrix[pos_y][pos_x] != 0:
                         return False
+
                 # Reached the floor:
                 except IndexError:
                     return False

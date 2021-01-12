@@ -22,6 +22,9 @@ class Configurations():
         8: 'plum2'
     }
 
+    #
+    matrix_background_color = 'gray85'
+
     # Tetromino definitions:
     tetronimos = {
         'L': {'shape': [[0,0,0],[2,2,2],[2,0,0]]},
