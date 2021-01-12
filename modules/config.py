@@ -8,7 +8,7 @@ class Configurations():
     height = 21 # The top row is hidden.
 
     # Pixel size of one brick:
-    brick_size = 40
+    brick_size = 30
 
     # Color mappings:
     tetronimo_colors = {
