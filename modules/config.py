@@ -39,7 +39,16 @@ class Configurations():
     # Tetromino randomization:
     random_method = 'double_bag' # random permutation of group of two sets of tetrominoes are generated
 
-    # Score definitions:
-
+    # Score is given for cleared lines and cells being dropped:
+    scoring= {
+        'multiplier': {
+            1: 40,
+            2: 100,
+            3: 300,
+            4: 1200
+        },
+        'soft_drop_score': 1,
+        'hard_drop_score': 2,
+    }
 
     # Speed definitions:
