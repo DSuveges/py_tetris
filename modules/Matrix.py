@@ -39,6 +39,12 @@ class Matrix():
                 
 
     def test_for_complete_row(self):
+        """
+        This function call removes completed rows from the matrix 
+        and adds new rows to the top.
+
+        Returns with the number of rows deleted
+        """
 
         # Testing if there are a completed row after the merge:
         is_row_complete = np.array([np.all(i) for i in self.matrix])
@@ -146,6 +152,9 @@ class Matrix():
     ## All logic for the movements of the tetromino are here:
     ##
     def move_left(self):
+        """
+        Moving the tetromino left with one unit
+        """
         if not self.position:
             return None
         new_position = self.position.copy()
@@ -154,7 +163,11 @@ class Matrix():
         # Is it a walid move?
         self.is_valid(position=new_position)
 
+
     def move_right(self):
+        """
+        Moving the tetromino right with one unit
+        """
         if not self.position:
             return None
         new_position = self.position.copy()
@@ -163,7 +176,12 @@ class Matrix():
         # Is it a walid move?
         self.is_valid(position=new_position)
         
+
     def move_down(self):
+        """
+        Moving the tetromino down with one unit. 
+        Not testing if there's any complete row.
+        """
         if not self.position:
             return None
         
@@ -176,30 +194,39 @@ class Matrix():
         # If it's not a valid move, merge tetromino and test if an rows completed:
         if not is_valid:
             self.merge_tetromino()
-            complete_rows = self.test_for_complete_row()
+            return 'Stop'      
 
-            # returning the number of completed rows for score calculation:
-            return complete_rows
-        
     def rotate_left(self):
+        """
+        Rotating the tetromino counterclockwise
+        """
         if self.tetromino is None:
             return None
         
         tetromino = np.rot90(self.tetromino.copy())
-        is_valid = self.is_valid(tetromino=tetromino)
-        
+        is_valid = self.is_valid(tetromino=tetromino)       
+
 
     def rotate_right(self):
+        """
+        Rotating the tetromino clockwise
+        """
         if self.tetromino is None:
             return None
         
         tetromino = np.rot90(self.tetromino.copy(), k=3)
         is_valid = self.is_valid(tetromino=tetromino)
 
+
     def drop(self):
+        """
+        Hard drop movement
+        """
+        dropped_rows = 0
         while True:
             return_value = self.move_down()
-            if return_value is not None:
-                return return_value
+            dropped_rows += 1
+            if return_value == 'Stop':
+                return dropped_rows
 
 

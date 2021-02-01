@@ -8,6 +8,7 @@ from config import Configurations
 from Bag import Bag
 from Matrix import Matrix
 from Plot import MatrixPlot
+from Scoring import Score
 
 
 
@@ -37,6 +38,10 @@ m_plot = MatrixPlot(screen_size, tetromino_colors, brick_size, matrix_background
 # Initialize the matrix:
 m = Matrix(dimensions)
 
+# Initialzing score object
+scoring = Score(Configurations.scoring, level=1)
+
+
 # 
 while True: 
     events = pygame.event.get()
@@ -64,7 +69,7 @@ while True:
             if event.key == pygame.K_d:
                 m.rotate_right()
             if event.key == pygame.K_SPACE:
-                m.drop()
+                scoring.add_hard_drop_score(m.drop())
 
 
     # Move tetronimo down:
@@ -74,10 +79,15 @@ while True:
     # dt is measured in milliseconds, therefore 250 ms = 0.25 seconds
     if time_elapsed_since_last_action > 700:
         m.move_down()
-        m.test_for_complete_row()
 
         # reset it to 0 so you can count again
         time_elapsed_since_last_action = 0 
+
+    # After every tick, we check for completed rows and update:
+    completed_rows = m.test_for_complete_row()
+    scoring.rows_cleared(completed_rows)
+
+    print(f'score: {scoring.get_score()}, level: {scoring.get_level()}, rows cleared: {scoring.get_lines()}\r')
 
 
     # Update screen:
