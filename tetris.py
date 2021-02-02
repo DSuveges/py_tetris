@@ -7,7 +7,7 @@ sys.path.append("/Users/dsuveges/repositories/py_tetris/modules")
 from config import Configurations
 from Bag import Bag
 from Matrix import Matrix
-from Plot import MatrixPlot
+from Plot import MatrixPlot, BackgroundPlot
 from Scoring import Score
 
 
@@ -21,19 +21,24 @@ tetronimos = Configurations.tetronimos
 random_method = Configurations.random_method
 tetromino_colors = Configurations.tetronimo_colors
 matrix_background_color = Configurations.matrix_background_color
+matrix_offset = Configurations.matrix_offset
 
 # Initializing 
 bag = Bag(tetronimos)
 
-# Genertaing screen dimensions:
-screen_size = [Configurations.width * brick_size, Configurations.height * brick_size]
+# Genertaing the display:
+screen_size = Configurations.screen_dimensions
+display = pygame.display.set_mode(screen_size)
+bg = BackgroundPlot(display, Configurations)
+bg.draw_matrix_frame()
+
 
 # Set timing:
 time_elapsed_since_last_action = 0
 clock = pygame.time.Clock()
 
 # Initilize matrix view:
-m_plot = MatrixPlot(screen_size, tetromino_colors, brick_size, matrix_background_color)
+m_plot = MatrixPlot(tetromino_colors, brick_size, matrix_background_color, display, matrix_offset)
 
 # Initialize the matrix:
 m = Matrix(dimensions)

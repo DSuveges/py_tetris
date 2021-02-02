@@ -3,7 +3,7 @@
 
 class Configurations():
 
-    # Dimension of the field:
+    # Dimension of the play fields:
     width = 10
     height = 21 # The top row is hidden.
 
@@ -52,3 +52,9 @@ class Configurations():
     }
 
     # Speed definitions:
+
+    # screen parameters:
+    screen_dimensions = [600, 800]
+
+    # Offsets of fields:
+    matrix_offset = (100,100)
