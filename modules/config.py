@@ -14,16 +14,21 @@ class Configurations():
     tetronimo_colors = {
         1: 'white',
         2: 'darkorange',
-        3: 'lightgoldenrod1',
-        4: 'firebrick',
-        5: 'olivedrab1',
+        3: 'gold1',
+        4: 'firebrick2',
+        5: 'chartreuse3',
         6: 'lightskyblue',
         7: 'cyan',
         8: 'plum2'
     }
 
-    #
-    matrix_background_color = 'gray85'
+    #  color definitions for alrger elements:
+    matrix_background_color = 'ivory1'
+    display_color = 'cornsilk4'
+    frame_color = 'lightsteelblue'
+
+    # Frame with as fraction of a brick:
+    frame_fraction = 0.25
 
     # Tetromino definitions:
     tetronimos = {
@@ -57,4 +62,4 @@ class Configurations():
     screen_dimensions = [600, 800]
 
     # Offsets of fields:
-    matrix_offset = (100,100)
+    matrix_offset = (80,140)

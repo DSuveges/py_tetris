@@ -83,45 +83,37 @@ class BackgroundPlot():
         self.display = display
         self.configuration = configuration
 
+        # Extracting important values:
+        self.frame_width = configuration.frame_fraction * configuration.brick_size
+        self.frame_color = configuration.frame_color
+
+        # Store panel positions and sizes:
+        self.matrix = {
+            'offset': configuration.matrix_offset, 
+            'size': [
+                configuration.brick_size * configuration.width, 
+                configuration.brick_size * (configuration.height - 1)
+            ]
+        }
+
+    def draw_frame(self,rect):
+        """
+        This function expects the rect coordinates being already calculated
+        """
+        pygame.draw.rect(self.display, self.frame_color, rect)
+
+
 
     def draw_matrix_frame(self):
         """
         Drawing frame around the tetrix matrix
         """
-
-        # Extracting matrix parameters:
-        color = self.configuration.matrix_background_color
-        (x,y) = self.configuration.matrix_offset
-        height = (self.configuration.height - 1) * self.configuration.brick_size
-        width = self.configuration.width * self.configuration.brick_size
-
-        rgb = pygame.Color(color)
-        rgb_lighter = color_adjust(rgb, 0.8)
-        rgb_darker = color_adjust(rgb, 1.1)
-
-        print(rgb_lighter)
-        print(rgb_darker)
-
-        # Scaling coordinates:
-        x = x - self.configuration.brick_size / 2
-        y = y - self.configuration.brick_size / 2
-
-        triange_1 = [
-            (x, y), 
-            (x + width + self.configuration.brick_size, y), 
-            (x, y + height + self.configuration.brick_size)
+        rect = [
+            self.matrix['offset'][0] - self.frame_width,
+            self.matrix['offset'][1] - self.frame_width,
+            self.matrix['size'][0] + 2 * self.frame_width,
+            self.matrix['size'][1] + 2 * self.frame_width,
         ]
 
-        triange_2 = [
-            (x + width + self.configuration.brick_size, y), 
-            (x, y + height + self.configuration.brick_size),
-            (x + width + self.configuration.brick_size, y + height + self.configuration.brick_size)
-        ]
-
-        print(triange_1)
-        print(triange_2)
-
-        # Drawing the two triangles:
-        pygame.draw.polygon(self.display, rgb_lighter, triange_1)
-        pygame.draw.polygon(self.display, rgb_darker, triange_2)
+        self.draw_frame(rect)
 

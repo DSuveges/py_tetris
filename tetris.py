@@ -29,6 +29,7 @@ bag = Bag(tetronimos)
 # Genertaing the display:
 screen_size = Configurations.screen_dimensions
 display = pygame.display.set_mode(screen_size)
+display.fill(Configurations.display_color)
 bg = BackgroundPlot(display, Configurations)
 bg.draw_matrix_frame()
 
