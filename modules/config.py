@@ -3,9 +3,15 @@
 
 class Configurations():
 
+    # screen parameters:
+    screen_dimensions = [600, 800]
+
     # Dimension of the play fields:
     width = 10
     height = 21 # The top row is hidden.
+
+    # Offsets of fields:
+    matrix_offset = (65,140)
 
     # Pixel size of one brick:
     brick_size = 30
@@ -59,8 +65,11 @@ class Configurations():
 
     # Speed definitions:
 
-    # screen parameters:
-    screen_dimensions = [600, 800]
+    ##
+    ## Panel dimensions
+    ##
+    next_element_offset = [385,140]
+    next_element_size = [150,150]
 
-    # Offsets of fields:
-    matrix_offset = (80,140)
+
+

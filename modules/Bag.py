@@ -49,7 +49,7 @@ class Bag():
 
         return picked_tetronimo['shape']
 
-    def next_one(self):
+    def show_next(self):
 
         return self.bag[-1]['shape']
 
