@@ -7,7 +7,7 @@ sys.path.append("/Users/dsuveges/repositories/py_tetris/modules")
 from config import Configurations
 from Bag import Bag
 from Matrix import Matrix
-from Plot import MatrixPlot
+from Plot import MatrixPlot, BackgroundPlot, NextElementPlot
 from Scoring import Score
 
 
@@ -19,21 +19,32 @@ brick_size = Configurations.brick_size
 dimensions = (Configurations.height, Configurations.width)
 tetronimos = Configurations.tetronimos
 random_method = Configurations.random_method
+random_seed = Configurations.random_seed
 tetromino_colors = Configurations.tetronimo_colors
 matrix_background_color = Configurations.matrix_background_color
+matrix_offset = Configurations.matrix_offset
+next_element_offset = Configurations.next_element_offset
+next_element_size = Configurations.next_element_size
 
 # Initializing 
-bag = Bag(tetronimos)
+bag = Bag(tetronimos,random_method=random_method, seed=random_seed)
 
-# Genertaing screen dimensions:
-screen_size = [Configurations.width * brick_size, Configurations.height * brick_size]
+# Genertaing the display:
+screen_size = Configurations.screen_dimensions
+display = pygame.display.set_mode(screen_size)
+display.fill(Configurations.display_color)
+bg = BackgroundPlot(display, Configurations)
+bg.draw_matrix_frame()
+bg.draw_next_element_frame()
+show_next = NextElementPlot(tetromino_colors, brick_size, matrix_background_color, display, next_element_size, next_element_offset)
+
 
 # Set timing:
 time_elapsed_since_last_action = 0
 clock = pygame.time.Clock()
 
 # Initilize matrix view:
-m_plot = MatrixPlot(screen_size, tetromino_colors, brick_size, matrix_background_color)
+m_plot = MatrixPlot(tetromino_colors, brick_size, matrix_background_color, display, matrix_offset)
 
 # Initialize the matrix:
 m = Matrix(dimensions)
@@ -53,6 +64,7 @@ while True:
     # If no tetromino is in the matrix, give one:
     if m.tetromino is None:
         m.add_tetromino(bag.pull_one())
+        show_next.draw_next(bag.show_next())
 
     # Rotating and moving the tetromino:
     for event in events:

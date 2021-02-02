@@ -3,9 +3,15 @@
 
 class Configurations():
 
-    # Dimension of the field:
+    # screen parameters:
+    screen_dimensions = [600, 800]
+
+    # Dimension of the play fields:
     width = 10
     height = 21 # The top row is hidden.
+
+    # Offsets of fields:
+    matrix_offset = (65,140)
 
     # Pixel size of one brick:
     brick_size = 30
@@ -14,16 +20,21 @@ class Configurations():
     tetronimo_colors = {
         1: 'white',
         2: 'darkorange',
-        3: 'lightgoldenrod1',
-        4: 'firebrick',
-        5: 'olivedrab1',
+        3: 'gold1',
+        4: 'firebrick2',
+        5: 'chartreuse3',
         6: 'lightskyblue',
         7: 'cyan',
         8: 'plum2'
     }
 
-    #
-    matrix_background_color = 'gray85'
+    #  color definitions for alrger elements:
+    matrix_background_color = 'ivory1'
+    display_color = 'cornsilk4'
+    frame_color = 'lightsteelblue'
+
+    # Frame with as fraction of a brick:
+    frame_fraction = 0.25
 
     # Tetromino definitions:
     tetronimos = {
@@ -38,6 +49,7 @@ class Configurations():
 
     # Tetromino randomization:
     random_method = 'double_bag' # random permutation of group of two sets of tetrominoes are generated
+    random_seed = None # Tells if the random seed is set.
 
     # Score is given for cleared lines and cells being dropped:
     scoring= {
@@ -52,3 +64,12 @@ class Configurations():
     }
 
     # Speed definitions:
+
+    ##
+    ## Panel dimensions
+    ##
+    next_element_offset = [385,140]
+    next_element_size = [150,150]
+
+
+
