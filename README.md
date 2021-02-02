@@ -4,7 +4,7 @@ A tetris implementation in Python using pygame. This effort of mine is dedicated
 
 ## V.0.1
 
-![Current progress shown here](vid/tetris_v0.1.gif)
+![Current progress shown here](vid/tetris_v0.2.gif)
 
 
 ### Requirements
@@ -21,6 +21,5 @@ Tetris rules are implemented defied for [NES tetris](https://tetris.fandom.com/w
 
 * Implement scoring according to NES rules.
 * Implement [wall-kick](https://tetris.wiki/Super_Rotation_System#Wall_Kicks)
-* Develop matrix frame to show score and the nex tetromino.
 * Develop some db to store high-scores.
 * Develop two-player front end.
