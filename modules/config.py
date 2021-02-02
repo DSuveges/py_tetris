@@ -43,6 +43,7 @@ class Configurations():
 
     # Tetromino randomization:
     random_method = 'double_bag' # random permutation of group of two sets of tetrominoes are generated
+    random_seed = None # Tells if the random seed is set.
 
     # Score is given for cleared lines and cells being dropped:
     scoring= {

@@ -19,12 +19,13 @@ brick_size = Configurations.brick_size
 dimensions = (Configurations.height, Configurations.width)
 tetronimos = Configurations.tetronimos
 random_method = Configurations.random_method
+random_seed = Configurations.random_seed
 tetromino_colors = Configurations.tetronimo_colors
 matrix_background_color = Configurations.matrix_background_color
 matrix_offset = Configurations.matrix_offset
 
 # Initializing 
-bag = Bag(tetronimos)
+bag = Bag(tetronimos,random_method=random_method, seed=random_seed)
 
 # Genertaing the display:
 screen_size = Configurations.screen_dimensions
