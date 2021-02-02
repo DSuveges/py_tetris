@@ -24,7 +24,7 @@ class Configurations():
         4: 'firebrick2',
         5: 'chartreuse3',
         6: 'lightskyblue',
-        7: 'cyan',
+        7: 'turquoise2',
         8: 'plum2'
     }
 
