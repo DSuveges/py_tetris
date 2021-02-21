@@ -4,7 +4,7 @@ A tetris implementation in Python using pygame. This effort of mine is dedicated
 
 ## V.1.0
 
-![Current progress shown here](vid/tetris_v1.0.gif){:height="50%" width="50%"}
+![Current progress shown here](vid/tetris_v1.0.gif)
 
 1. Random method: double bag.
 2. Score calculated based on NES rules.
