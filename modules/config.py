@@ -24,14 +24,16 @@ class Configurations():
         4: 'firebrick2',
         5: 'chartreuse3',
         6: 'lightskyblue',
-        7: 'cyan',
+        7: 'turquoise2',
         8: 'plum2'
     }
 
-    #  color definitions for alrger elements:
+    #  color definitions for other elements:
     matrix_background_color = 'ivory1'
     display_color = 'cornsilk4'
     frame_color = 'lightsteelblue'
+    panel_label_color = 'darkslategray'
+    panel_text_color = 'lightskyblue4'
 
     # Frame with as fraction of a brick:
     frame_fraction = 0.25
@@ -44,7 +46,7 @@ class Configurations():
         'S': {'shape': [[0,0,0],[0,5,5],[5,5,0]]},
         'J': {'shape': [[0,0,0],[6,6,6],[0,0,6]]},
         'I': {'shape': [[0,0,0,0],[0,0,0,0],[7,7,7,7],[0,0,0,0]]},
-        'T': {'shape': [[0,0,0],[8,8,8],[0,8,0]]}
+        'T': {'shape': [[0,0,0],[8,8,8],[0,8,0]]},
     }
 
     # Tetromino randomization:
@@ -68,8 +70,38 @@ class Configurations():
     ##
     ## Panel dimensions
     ##
-    next_element_offset = [385,140]
-    next_element_size = [150,150]
 
+    player = {
+        'offset': [385,140],
+        'size': [150,50],
+    }
+
+    # Panel showing the next element:
+    next_element = {
+        'offset': [385,240],
+        'size': [150,150],
+        'label': 'Next'
+    }
+
+    # Panel showing the score
+    score = {
+        'offset': [385,440],
+        'size': [150,50],
+        'label': 'Score'
+    }
+
+    # Panel showing level:
+    level = {
+        'offset': [385,540],
+        'size': [150,50],
+        'label': 'Level'
+    }
+
+    # PAnel showing rows cleared:
+    rows = {
+        'offset': [385,640],
+        'size': [150,50],
+        'label': 'Rows'
+    }
 
 

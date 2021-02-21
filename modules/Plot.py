@@ -81,7 +81,7 @@ class NextElementPlot():
     This class draws the next tetromino in the next panel
     """
 
-    def __init__(self, tetromino_colors, brick_size, matrix_background_color, display, dimensions, offset):
+    def __init__(self, tetromino_colors, brick_size, matrix_background_color, display, next_element):
         self.tetromino_colors = tetromino_colors
         self.brick_size = brick_size
         self.display = display 
@@ -89,8 +89,8 @@ class NextElementPlot():
         self.matrix_background_color = matrix_background_color
 
         # Offset values are set so the items can be moved around in the screen:
-        self.offset = offset
-        self.dimensions = dimensions
+        self.offset = next_element['offset']
+        self.dimensions = next_element['size']
 
         # Clearing the background
         self.clear()
@@ -148,7 +148,51 @@ class NextElementPlot():
         pygame.draw.rect(self.display, rgb, rect_dim)
 
 
+class LabelsPlot():
 
+    def __init__(self, display, configuration):
+        self.label_color = configuration.panel_text_color
+        self.foreground_color = configuration.matrix_background_color
+        self.display = display
+        self.configuration = configuration
+
+        # Initialize label:
+        self.panel_font = pygame.font.SysFont('novamono', 40)
+
+
+    def write_text(self, dimensions, label):
+
+        # Clearing background:
+        pygame.draw.rect(self.display, self.foreground_color, dimensions['offset'] + dimensions['size'])
+
+        # Calculate text:
+        label = self.panel_font.render(label, True, self.label_color)
+        x_center_offset = (dimensions['size'][0] - label.get_rect().width) / 2
+
+        self.display.blit(label, (dimensions['offset'][0] + x_center_offset, dimensions['offset'][1] + 10))
+
+
+    def update_score(self, score):
+
+        score = str(score).zfill(7)
+
+        dimensions = self.configuration.score
+        self.write_text(dimensions,score)
+
+
+    def update_level(self, level):
+        dimensions = self.configuration.level
+        self.write_text(dimensions,str(level))
+
+
+    def update_rows(self, rows):
+        dimensions = self.configuration.rows
+        self.write_text(dimensions,str(rows))
+
+
+    def update_player(self, player):
+        dimensions = self.configuration.player
+        self.write_text(dimensions,player)
 
 
 class BackgroundPlot():
@@ -160,50 +204,68 @@ class BackgroundPlot():
         # Extracting important values:
         self.frame_width = configuration.frame_fraction * configuration.brick_size
         self.frame_color = configuration.frame_color
+        self.foreground_color = configuration.matrix_background_color
+
+        # Initialize labels:
+        self.panel_font = pygame.font.SysFont('novamono', 35)
+        self.panel_text_color = configuration.panel_label_color
 
         # Store panel positions and sizes:
-        self.matrix = {
+        self.draw_panel({
             'offset': configuration.matrix_offset, 
             'size': [
                 configuration.brick_size * configuration.width, 
                 configuration.brick_size * (configuration.height - 1)
             ]
-        }
+        })
 
-        self.next_element = {
-            'offset': configuration.next_element_offset,
-            'size': configuration.next_element_size
-        }
+        self.draw_panel(configuration.player)
+        self.draw_panel(configuration.next_element)
+        self.draw_panel(configuration.score)
+        self.draw_panel(configuration.level)
+        self.draw_panel(configuration.rows)
 
-    def draw_frame(self,data):
+
+
+    def draw_panel(self,data):
         """
-        This function expects the rect coordinates being already calculated
+        Daws the panel with frame + adds label
         """
+        
+        # Calaculating background:
+        rect_fg = [
+            data['offset'][0],
+            data['offset'][1],
+            data['size'][0],
+            data['size'][1],
+        ]
 
-        rect = [
+        # Calaculating background:
+        rect_bg = [
             data['offset'][0] - self.frame_width,
             data['offset'][1] - self.frame_width,
             data['size'][0] + 2 * self.frame_width,
             data['size'][1] + 2 * self.frame_width,
         ]
 
-        pygame.draw.rect(self.display, self.frame_color, rect)
+        if 'label' in data:
+            rect_bg[1] -= 25
+            rect_bg[3] += 25
 
 
+        # Drawing background and foreground rectangle:
+        pygame.draw.rect(self.display, self.frame_color, rect_bg)
+        pygame.draw.rect(self.display, self.foreground_color, rect_fg)
 
-    def draw_matrix_frame(self):
-        """
-        Drawing frame around the tetrix matrix
-        """
+        # Adding text if present:
+        if 'label' in data:
+            
+            # Calculate text:
+            label = self.panel_font.render(data['label'], True, self.panel_text_color)
+            x_center_offset = (data['size'][0] - label.get_rect().width) / 2
 
-        self.draw_frame(self.matrix)
 
-
-    def draw_next_element_frame(self):
-        """
-        Drawing the frame for the next element field
-        """
-        self.draw_frame(self.next_element)
+            self.display.blit(label, (rect_bg[0] + x_center_offset, rect_bg[1] + 5))
 
 
 

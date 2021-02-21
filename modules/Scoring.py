@@ -51,5 +51,5 @@ class Score(object):
         return self.score
 
 
-    def get_lines(self):
+    def get_rows(self):
         return self.cleared_lines

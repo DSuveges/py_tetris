@@ -192,10 +192,12 @@ class Matrix():
         is_valid = self.is_valid(position=new_position)
         
         # If it's not a valid move, merge tetromino and test if an rows completed:
-        if not is_valid:
+        if not is_valid and self.position[1] < 0:
+            return 'game over'  
+        elif not is_valid:
             self.merge_tetromino()
-            return 'Stop'      
-
+            return 'Stop'
+    
     def rotate_left(self):
         """
         Rotating the tetromino counterclockwise
@@ -226,7 +228,7 @@ class Matrix():
         while True:
             return_value = self.move_down()
             dropped_rows += 1
-            if return_value == 'Stop':
+            if return_value is not None:
                 return dropped_rows
 
 
