@@ -35,7 +35,7 @@ class Matrix():
                 if value != 0 and yi+y >= 0:
                     m[yi+y][xi+x] = value
                     
-        return m[1:]
+        return m
                 
 
     def test_for_complete_row(self):
@@ -198,6 +198,7 @@ class Matrix():
             self.merge_tetromino()
             return 'Stop'
     
+
     def rotate_left(self):
         """
         Rotating the tetromino counterclockwise

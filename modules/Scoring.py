@@ -1,6 +1,6 @@
+from config import Configurations
 
-
-class Score(object):
+class Score(Configurations):
     """
     This class maintains the score of the player, the cleared lines and the current level
     """
@@ -9,15 +9,15 @@ class Score(object):
     level = 1 
     cleared_lines = 0
 
-    def __init__(self, scoring, level=None):
+    def __init__(self, level=None):
 
         # Futureproofing: allows user start from a given level:
         if level:
             self.level = level
 
-        self.scoring_multiplier = scoring['multiplier']
-        self.soft_drop_score = scoring['soft_drop_score']
-        self.hard_drop_score = scoring['hard_drop_score']
+        self.scoring_multiplier = self.scoring['multiplier']
+        self.soft_drop_score = self.scoring['soft_drop_score']
+        self.hard_drop_score = self.scoring['hard_drop_score']
 
     def rows_cleared(self, rows_cleared=None):
         """
