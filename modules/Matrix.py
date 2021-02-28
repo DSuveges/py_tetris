@@ -198,6 +198,7 @@ class Matrix():
             self.merge_tetromino()
             return 'Stop'
     
+    
     def rotate_left(self):
         """
         Rotating the tetromino counterclockwise

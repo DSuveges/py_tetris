@@ -1,8 +1,8 @@
 import numpy as np
+from config import Configurations
 
 
-
-class Bag():
+class Bag(Configurations):
     """
     This module generates random sequence of tetronimos 
     following a specified rule.
@@ -14,26 +14,25 @@ class Bag():
       * random: This method generates a random sequence of tetrominos.
         So, arbirarily large sequneces can occur. 
     """
-    def __init__(self, tetronimos, random_method='double_bag', seed=None):
+    def __init__(self):
 
         # Setting the random seed if present:
-        if seed is not None:
-            np.random.seed(seed)
+        if self.random_seed is not None:
+            np.random.seed(self.random_seed)
 
-        self.tetronimos = list(tetronimos.values())
-        self.random_method = random_method
+        self.tetronimo_names = list(self.tetronimos.values())
         self.generate_bag()
 
 
     def generate_bag(self):
         if self.random_method == 'single_bag':
-            self.bag =  self.tetronimos.copy()
+            self.bag =  self.tetronimo_names.copy()
         elif self.random_method == 'double_bag':
-            self.bag = self.tetronimos.copy() * 2
+            self.bag = self.tetronimo_names.copy() * 2
         elif self.random_method == 'triple_bag':
-            self.bag = self.tetronimos.copy() * 3
+            self.bag = self.tetronimo_names.copy() * 3
         elif self.random_method == 'random':
-            self.bag = [np.random.choice(self.tetronimos)]
+            self.bag = [np.random.choice(self.tetronimo_names)]
         else:
             raise ValueError(f'Unknown bag generation method: {self.random_method}.')
 

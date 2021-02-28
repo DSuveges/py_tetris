@@ -7,8 +7,7 @@ class Configurations():
     screen_dimensions = [600, 800]
 
     # Dimension of the play fields:
-    width = 10
-    height = 21 # The top row is hidden.
+    matrix_dimensions = [10, 21]
 
     # Offsets of fields:
     matrix_offset = (65,140)
@@ -17,7 +16,7 @@ class Configurations():
     brick_size = 30
 
     # Color mappings:
-    tetronimo_colors = {
+    tetromino_colors = {
         1: 'white',
         2: 'darkorange',
         3: 'gold1',

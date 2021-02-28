@@ -1,6 +1,7 @@
 import numpy as np 
 import pygame
 import colorsys
+from config import Configurations 
 
 def color_adjust(color, light_factor):
     hls_code = colorsys.rgb_to_hls(color[0]/255,color[1]/255,color[2]/255)
@@ -214,8 +215,8 @@ class BackgroundPlot():
         self.draw_panel({
             'offset': configuration.matrix_offset, 
             'size': [
-                configuration.brick_size * configuration.width, 
-                configuration.brick_size * (configuration.height - 1)
+                configuration.brick_size * configuration.screen_dimensions[0], 
+                configuration.brick_size * (configuration.screen_dimensions[1] - 1)
             ]
         })
 
