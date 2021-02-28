@@ -20,7 +20,7 @@ dimensions = (Configurations.height, Configurations.width)
 tetronimos = Configurations.tetronimos
 random_method = Configurations.random_method
 random_seed = Configurations.random_seed
-tetromino_colors = Configurations.tetronimo_colors
+tetromino_colors = Configurations.tetromino_colors
 matrix_background_color = Configurations.matrix_background_color
 matrix_offset = Configurations.matrix_offset
 
@@ -122,5 +122,3 @@ while True:
     pygame.draw.rect(my_image, BLUE, my_image.get_rect())
 
 
-while True:
-    x = 1
