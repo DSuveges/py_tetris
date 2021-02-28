@@ -25,6 +25,17 @@ class tetris(Configurations):
         self.game()
 
 
+    def pause(self):
+        """
+        Keeping the game paused until it is not unpaused
+        """
+        while True:
+            for event in pygame.event.get():
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_p:
+                        return
+
     def game(self):
         ##
         ## Initialize game:
@@ -77,6 +88,8 @@ class tetris(Configurations):
                         m.rotate_right()
                     if event.key == pygame.K_SPACE:
                         scoring_obj.add_hard_drop_score(m.drop())
+                    if event.key == pygame.K_p:
+                        self.pause()
 
             # Move tetronimo down:
             dt = clock.tick() 
