@@ -213,7 +213,7 @@ class BackgroundPlot(Configurations):
             'offset': self.matrix_offset, 
             'size': [
                 self.brick_size * self.matrix_dimensions[0], 
-                self.brick_size * (self.matrix_dimensions[1]-1)
+                self.brick_size * (self.matrix_dimensions[1])
             ]
         })
         print('updated')

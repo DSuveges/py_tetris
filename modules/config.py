@@ -7,7 +7,7 @@ class Configurations():
     screen_dimensions = [600, 800]
 
     # Dimension of the play fields:
-    matrix_dimensions = [10, 21]
+    matrix_dimensions = [10, 20]
 
     # Offsets of fields:
     matrix_offset = (65,140)
