@@ -1,5 +1,5 @@
 import numpy as np
-from config import Configurations
+from modules.config import Configurations
 
 
 class Bag(Configurations):

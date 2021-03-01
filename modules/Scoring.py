@@ -1,4 +1,4 @@
-from config import Configurations
+from modules.config import Configurations
 
 class Score(Configurations):
     """
