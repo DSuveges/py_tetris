@@ -1,7 +1,8 @@
 import numpy as np 
 import pygame
 import colorsys
-from config import Configurations 
+from modules.config import Configurations 
+
 
 def color_adjust(color, light_factor):
     hls_code = colorsys.rgb_to_hls(color[0]/255,color[1]/255,color[2]/255)
