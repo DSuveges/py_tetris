@@ -15,8 +15,11 @@ pickleshare==0.7.5
 pip==20.3.3
 prompt-toolkit==3.0.8
 ptyprocess==0.7.0
+py-tetris==0.1
 pygame==2.0.1
+pygame-menu==3.5.7
 Pygments==2.7.3
+pyperclip==1.8.2
 setuptools==51.0.0.post20201207
 six==1.15.0
 traitlets==4.3.3

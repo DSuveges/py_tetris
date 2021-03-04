@@ -8,6 +8,7 @@ class Score(Configurations):
     score = 0
     level = 1 
     cleared_lines = 0
+    tetris_count = 0
 
     def __init__(self, level=None):
 
@@ -26,6 +27,9 @@ class Score(Configurations):
 
         if rows_cleared is None or rows_cleared == 0    :
             return
+
+        if rows_cleared == 4:
+            self.tetris_count += 1
 
         # If at least one row is cleared:
         self.cleared_lines += rows_cleared
@@ -53,3 +57,12 @@ class Score(Configurations):
 
     def get_rows(self):
         return self.cleared_lines
+
+    def get_tetris_rate(self):
+        if self.cleared_lines == 0:
+            return 0
+        else:
+            return int((self.tetris_count * 4 / self.cleared_lines)*100)
+
+
+

@@ -190,6 +190,11 @@ class LabelsPlot(Configurations):
         self.write_text(dimensions,player)
 
 
+    def update_tetris_rate(self, tetris_rate):
+        dimensions = self.tetris_rate
+        self.write_text(dimensions,f'{tetris_rate}')
+
+
 class BackgroundPlot(Configurations):
     """
     This class draws the game layout except the game matrix
@@ -207,7 +212,7 @@ class BackgroundPlot(Configurations):
         self.frame_width = self.frame_fraction * self.brick_size
 
         # Initialize labels:
-        self.panel_font = pygame.font.SysFont('novamono', 35)
+        self.panel_font = pygame.font.SysFont('novamono', 30)
 
         # Store panel positions and sizes:
         self.draw_panel({
@@ -223,7 +228,7 @@ class BackgroundPlot(Configurations):
         self.draw_panel(self.score)
         self.draw_panel(self.level)
         self.draw_panel(self.rows)
-
+        self.draw_panel(self.tetris_rate)
 
 
     def draw_panel(self,data):
@@ -231,7 +236,7 @@ class BackgroundPlot(Configurations):
         Daws the panel with frame + adds label
         """
         
-        # Calaculating background:
+        # Calaculating foreground:
         rect_fg = [
             data['offset'][0],
             data['offset'][1],
@@ -248,8 +253,8 @@ class BackgroundPlot(Configurations):
         ]
 
         if 'label' in data:
-            rect_bg[1] -= 25
-            rect_bg[3] += 25
+            rect_bg[1] -= 20
+            rect_bg[3] += 20
 
 
         # Drawing background and foreground rectangle:

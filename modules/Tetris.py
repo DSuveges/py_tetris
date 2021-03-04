@@ -58,6 +58,7 @@ class tetris(Configurations):
         labels_obj.update_score(scoring_obj.get_score())
         labels_obj.update_level(scoring_obj.get_level())
         labels_obj.update_rows(scoring_obj.get_rows())
+        labels_obj.update_tetris_rate(scoring_obj.get_tetris_rate())
 
         while True: 
             events = pygame.event.get()
@@ -111,6 +112,7 @@ class tetris(Configurations):
                 labels_obj.update_score(scoring_obj.get_score())
                 labels_obj.update_level(scoring_obj.get_level())
                 labels_obj.update_rows(scoring_obj.get_rows())
+                labels_obj.update_tetris_rate(scoring_obj.get_tetris_rate())
 
             # Update screen:
             matrix_plot_obj.draw_matrix(m.get_state())
