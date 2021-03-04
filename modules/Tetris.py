@@ -20,7 +20,6 @@ class tetris(Configurations):
         self.player = player
         self.display = display
         self.display.fill(self.display_color)
-        self.play()
 
 
     def pause(self):
@@ -78,18 +77,33 @@ class tetris(Configurations):
 
                     if event.key == pygame.K_DOWN:
                         m.move_down()
+                        pygame.key.set_repeat(300, 100)
                     if event.key == pygame.K_LEFT:
                         m.move_left()
+                        pygame.key.set_repeat(300, 100)
                     if event.key == pygame.K_RIGHT:
                         m.move_right()
+                        pygame.key.set_repeat(300, 100)
+
+                    # Rotate:
                     if event.key == pygame.K_a:
                         m.rotate_left()
+                        pygame.key.set_repeat(300, 100)
                     if event.key == pygame.K_d:
                         m.rotate_right()
+                        pygame.key.set_repeat(300, 100)
+                    
+                    # Hard dropping:
                     if event.key == pygame.K_SPACE:
                         scoring_obj.add_hard_drop_score(m.drop())
+                    
+                    # Pause:
                     if event.key == pygame.K_p:
                         self.pause()
+
+                    # Returning to menu:
+                    if event.key == pygame.K_m:
+                        return scoring_obj
 
             # Move tetronimo down:
             dt = clock.tick() 
@@ -98,8 +112,10 @@ class tetris(Configurations):
             # dt is measured in milliseconds, therefore 250 ms = 0.25 seconds
             if time_elapsed_since_last_action > 700:
                 down_ret = m.move_down()
+
+                # If we no longer can move down, returning to menu:
                 if down_ret == 'game over':
-                    break
+                    return scoring_obj
 
                 # reset it to 0 so you can count again
                 time_elapsed_since_last_action = 0 

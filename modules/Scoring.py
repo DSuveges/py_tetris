@@ -58,6 +58,7 @@ class Score(Configurations):
     def get_rows(self):
         return self.cleared_lines
 
+
     def get_tetris_rate(self):
         if self.cleared_lines == 0:
             return 0

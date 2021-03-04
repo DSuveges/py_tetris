@@ -33,6 +33,7 @@ def main():
     display = pygame.display.set_mode(Configurations.screen_dimensions)
 
     tetris_obj = tetris(display)
+    scoring_obj = tetris_obj.play()
 
 
 if __name__ == '__main__':
