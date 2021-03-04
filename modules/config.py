@@ -72,35 +72,42 @@ class Configurations():
 
     player = {
         'offset': [385,140],
-        'size': [150,50],
+        'size': [150,45],
     }
 
     # Panel showing the next element:
     next_element = {
-        'offset': [385,240],
+        'offset': [385,230],
         'size': [150,150],
         'label': 'Next'
     }
 
-    # Panel showing the score
+    # Panel showing the score:
     score = {
-        'offset': [385,440],
-        'size': [150,50],
+        'offset': [385,425],
+        'size': [150,45],
         'label': 'Score'
     }
 
     # Panel showing level:
     level = {
-        'offset': [385,540],
-        'size': [150,50],
+        'offset': [385,515],
+        'size': [150,45],
         'label': 'Level'
     }
 
-    # PAnel showing rows cleared:
+    # Panel showing rows cleared:
     rows = {
-        'offset': [385,640],
-        'size': [150,50],
+        'offset': [385,605],
+        'size': [150,45],
         'label': 'Rows'
+    }
+
+    # Panel showing tetris rate:
+    tetris_rate = {
+        'offset': [385,695],
+        'size': [150,45],
+        'label': 'Tetris %'
     }
 
 
