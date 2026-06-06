@@ -2,20 +2,17 @@ import pygame
 import numpy as np
 import time
 
-from modules.config import Configurations
-from modules.Bag import Bag
-from modules.Matrix import Matrix
-from modules.Plot import MatrixPlot, BackgroundPlot, NextElementPlot, LabelsPlot
-from modules.Scoring import Score
+from py_tetris.config import Configurations
+from py_tetris.bag import Bag
+from py_tetris.matrix import Matrix
+from py_tetris.plot import MatrixPlot, BackgroundPlot, NextElementPlot, LabelsPlot
+from py_tetris.scoring import Score
 
 
 class tetris(Configurations):
 
 
     def __init__(self, display, level=1, player='Player 1'):
-        """
-        
-        """
         self.level = level
         self.player = player
         self.display = display
@@ -59,11 +56,11 @@ class tetris(Configurations):
         labels_obj.update_rows(scoring_obj.get_rows())
         labels_obj.update_tetris_rate(scoring_obj.get_tetris_rate())
 
-        while True: 
+        while True:
             events = pygame.event.get()
 
             for event in events:
-                if event.type == pygame.QUIT: 
+                if event.type == pygame.QUIT:
                     break
 
             # If no tetromino is in the matrix, give one:
@@ -92,11 +89,11 @@ class tetris(Configurations):
                     if event.key == pygame.K_d:
                         m.rotate_right()
                         pygame.key.set_repeat(300, 100)
-                    
+
                     # Hard dropping:
                     if event.key == pygame.K_SPACE:
                         scoring_obj.add_hard_drop_score(m.drop())
-                    
+
                     # Pause:
                     if event.key == pygame.K_p:
                         self.pause()
@@ -106,7 +103,7 @@ class tetris(Configurations):
                         return scoring_obj
 
             # Move tetronimo down:
-            dt = clock.tick() 
+            dt = clock.tick()
             time_elapsed_since_last_action += dt
 
             # dt is measured in milliseconds, therefore 250 ms = 0.25 seconds
@@ -118,7 +115,7 @@ class tetris(Configurations):
                     return scoring_obj
 
                 # reset it to 0 so you can count again
-                time_elapsed_since_last_action = 0 
+                time_elapsed_since_last_action = 0
 
             # After every tick, we check for completed rows and update:
             completed_rows = m.test_for_complete_row()
@@ -133,4 +130,3 @@ class tetris(Configurations):
             # Update screen:
             matrix_plot_obj.draw_matrix(m.get_state())
             pygame.display.flip()
-

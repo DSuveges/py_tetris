@@ -1,8 +1,7 @@
 import pygame
-from modules.Tetris import tetris
-from modules.config import Configurations
+from py_tetris.game import tetris
+from py_tetris.config import Configurations
 import pygame_menu
-
 
 
 class game_menu():
@@ -11,24 +10,16 @@ class game_menu():
         pass
 
     def show_controls():
-        # Do the job here !
         pass
 
     def start_the_game():
-        # Do the job here !
         pass
 
     def high_scores():
-        # Do the job here !
-        pass
-
-    def start_the_game():
-        # Do the job here !
         pass
 
 
 def main():
-    # Genertaing the display:
     pygame.init()
     display = pygame.display.set_mode(Configurations.screen_dimensions)
 
@@ -38,4 +29,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

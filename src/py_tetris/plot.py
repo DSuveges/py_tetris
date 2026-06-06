@@ -1,17 +1,16 @@
-import numpy as np 
+import numpy as np
 import pygame
 import colorsys
-from modules.config import Configurations 
+from py_tetris.config import Configurations
 
 
 def color_adjust(color, light_factor):
     hls_code = colorsys.rgb_to_hls(color[0]/255,color[1]/255,color[2]/255)
-    
+
     # Get the modifed rgb code:
     new_rgb = colorsys.hls_to_rgb(hls_code[0],
                                   hls_code[1]*light_factor,
                                   hls_code[2])
-
 
     return [ x * 255 for x in new_rgb ]
 
@@ -42,9 +41,9 @@ class MatrixPlot(Configurations):
 
         # rectangle dimensions:
         rect_dim = [
-            x + self.brick_offset, # x coordinate shifted to the right by the offset
-            y + self.brick_offset, # y coordinate shifted to the bottom by the offset 
-            self.brick_size - (2 * self.brick_offset), # Scaling down the rectangle 
+            x + self.brick_offset,
+            y + self.brick_offset,
+            self.brick_size - (2 * self.brick_offset),
             self.brick_size - (2 * self.brick_offset)
         ]
         pygame.draw.rect(self.display, rgb, rect_dim)
@@ -58,13 +57,12 @@ class MatrixPlot(Configurations):
         # Extract dimensions:
         (y,x) = matrix.shape
 
-        # self.display.fill(pygame.Color(self.matrix_background_color))
         full_game_dim = [
-            self.x_offset, # upper left corner of the matrix
-            self.y_offset, # 
-            self.brick_size * x, # Lower right corner of the matrix
+            self.x_offset,
+            self.y_offset,
+            self.brick_size * x,
             self.brick_size * y
-        ] 
+        ]
 
         pygame.draw.rect(self.display, self.matrix_background_color, full_game_dim)
 
@@ -82,7 +80,7 @@ class NextElementPlot(Configurations):
 
     def __init__(self, display):
 
-        self.display = display 
+        self.display = display
         self.brick_offset = self.brick_size / 10
 
         # Offset values are set so the items can be moved around in the screen:
@@ -113,7 +111,6 @@ class NextElementPlot(Configurations):
         tetr_offset_x = self.offset[0] + (5 - tetromino_dim) / 2 * self.brick_size
         tetr_offset_y = self.offset[1] + (5 - tetromino_dim) / 2 * self.brick_size
 
-
         for yi, row in enumerate(tetromino):
             for xi, color_code in enumerate(row):
                 if color_code != 0:
@@ -137,9 +134,9 @@ class NextElementPlot(Configurations):
 
         # rectangle dimensions:
         rect_dim = [
-            x + self.brick_offset, # x coordinate shifted to the right by the offset
-            y + self.brick_offset, # y coordinate shifted to the bottom by the offset 
-            self.brick_size - (2 * self.brick_offset), # Scaling down the rectangle 
+            x + self.brick_offset,
+            y + self.brick_offset,
+            self.brick_size - (2 * self.brick_offset),
             self.brick_size - (2 * self.brick_offset)
         ]
         pygame.draw.rect(self.display, rgb, rect_dim)
@@ -216,9 +213,9 @@ class BackgroundPlot(Configurations):
 
         # Store panel positions and sizes:
         self.draw_panel({
-            'offset': self.matrix_offset, 
+            'offset': self.matrix_offset,
             'size': [
-                self.brick_size * self.matrix_dimensions[0], 
+                self.brick_size * self.matrix_dimensions[0],
                 self.brick_size * (self.matrix_dimensions[1])
             ]
         })
@@ -235,7 +232,7 @@ class BackgroundPlot(Configurations):
         """
         Daws the panel with frame + adds label
         """
-        
+
         # Calaculating foreground:
         rect_fg = [
             data['offset'][0],
@@ -256,23 +253,15 @@ class BackgroundPlot(Configurations):
             rect_bg[1] -= 20
             rect_bg[3] += 20
 
-
         # Drawing background and foreground rectangle:
         pygame.draw.rect(self.display, self.frame_color, rect_bg)
         pygame.draw.rect(self.display, self.matrix_background_color, rect_fg)
 
         # Adding text if present:
         if 'label' in data:
-            
+
             # Calculate text:
             label = self.panel_font.render(data['label'], True, self.panel_label_color)
             x_center_offset = (data['size'][0] - label.get_rect().width) / 2
 
-
             self.display.blit(label, (rect_bg[0] + x_center_offset, rect_bg[1] + 5))
-
-
-
-
-
-

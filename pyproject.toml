@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "py-tetris"
+version = "0.1.0"
+description = "A simple tetris implementation in Python using pygame"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Daniel Suveges", email = "dsuveges@ebi.ac.uk" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "pygame>=2.0.0",
+    "pygame-menu>=4.0.0",
+    "numpy>=1.21.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/DSuveges/py_tetris"
+
+[project.scripts]
+py-tetris = "py_tetris.tetris:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/py_tetris"]

@@ -1,18 +1,18 @@
 import numpy as np
-from modules.config import Configurations
+from py_tetris.config import Configurations
 
 
 class Bag(Configurations):
     """
-    This module generates random sequence of tetronimos 
+    This module generates random sequence of tetronimos
     following a specified rule.
 
     Supported rules:
       * single, double, triple bag: This method generates a random
-        permutation of 1,2 or 3 sets of tetrominos this ensures the 
+        permutation of 1,2 or 3 sets of tetrominos this ensures the
         repetions of tetrominos within a given distance
       * random: This method generates a random sequence of tetrominos.
-        So, arbirarily large sequneces can occur. 
+        So, arbirarily large sequneces can occur.
     """
     def __init__(self):
 
@@ -43,7 +43,7 @@ class Bag(Configurations):
 
         picked_tetronimo = self.bag.pop()
 
-        if len(self.bag) == 0: 
+        if len(self.bag) == 0:
             self.generate_bag()
 
         return picked_tetronimo['shape']
@@ -51,4 +51,3 @@ class Bag(Configurations):
     def show_next(self):
 
         return self.bag[-1]['shape']
-

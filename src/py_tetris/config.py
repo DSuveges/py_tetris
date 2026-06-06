@@ -1,6 +1,3 @@
-## This file contains all the configurations for Tetris
-
-
 class Configurations():
 
     # screen parameters:
@@ -49,8 +46,8 @@ class Configurations():
     }
 
     # Tetromino randomization:
-    random_method = 'double_bag' # random permutation of group of two sets of tetrominoes are generated
-    random_seed = None # Tells if the random seed is set.
+    random_method = 'double_bag'
+    random_seed = None
 
     # Score is given for cleared lines and cells being dropped:
     scoring= {
@@ -63,8 +60,6 @@ class Configurations():
         'soft_drop_score': 1,
         'hard_drop_score': 2,
     }
-
-    # Speed definitions:
 
     ##
     ## Panel dimensions
@@ -109,5 +104,3 @@ class Configurations():
         'size': [150,45],
         'label': 'Tetris %'
     }
-
-

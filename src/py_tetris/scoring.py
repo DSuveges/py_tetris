@@ -1,4 +1,4 @@
-from modules.config import Configurations
+from py_tetris.config import Configurations
 
 class Score(Configurations):
     """
@@ -6,7 +6,7 @@ class Score(Configurations):
     """
 
     score = 0
-    level = 1 
+    level = 1
     cleared_lines = 0
     tetris_count = 0
 
@@ -64,6 +64,3 @@ class Score(Configurations):
             return 0
         else:
             return int((self.tetris_count * 4 / self.cleared_lines)*100)
-
-
-
